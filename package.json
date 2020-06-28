@@ -1,6 +1,86 @@
 {
-  "name": "easybread.service-adapter-example",
-  "version": "1.0.0",
+  "name": "@easybread/service-adapter-example",
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "author": {
+    "name": "Easybread",
+    "url": "https://easybread.io/"
+  },
+  "homepage": "https://easybread.io",
   "main": "./lib/index.js",
-  "license": "MIT"
+  "types": "./lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "contributors": [
+    {
+      "name": "Alexander Cherednichenko",
+      "email": "alexandr2110pro@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "yarn lint:fix && rimraf ./lib",
+    "build": "tsc",
+    "prepublish": "yarn build",
+    "check-types": "tsc --noEmit",
+    "prettier:write": "prettier 'src/**/*.ts' --write",
+    "prettier:check": "prettier 'src/**/*.ts' --check",
+    "lint": "eslint 'src/**/*.ts'",
+    "lint:ci": "yarn lint --quiet --format junit -o reports/junit/js-lint-results.xml",
+    "lint:fix": "eslint 'src/**/*.ts' --fix",
+    "test": "jest --passWithNoTests",
+    "test:cov": "jest --coverage",
+    "test:ci": "jest --ci --coverage --bail --reporters=default --reporters=jest-junit",
+    "test:watch": "jest --coverage --passWithNoTests --watchAll"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn check-types && lint-staged && yarn test"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "yarn lint:fix"
+    ]
+  },
+  "dependencies": {
+    "@easybread/common": "^0.0.3",
+    "@easybread/core": "^0.0.3",
+    "@easybread/operations": "^0.0.3",
+    "@easybread/schemas": "^0.0.3",
+    "axios": "^0.19.2",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "@easybread/test-utils": "^0.0.3",
+    "@types/axios": "^0.14.0",
+    "@types/lodash": "^4.14.149",
+    "lint-staged": "^10.0.8",
+    "@types/jest": "^24.9.0",
+    "@types/node": "^13.9.0",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-simple-import-sort": "^5.0.2",
+    "husky": "^4.2.5",
+    "jest": "^24.9.0",
+    "jest-junit": "^10.0.0",
+    "lerna": "^3.20.2",
+    "prettier": "^2.0.4",
+    "react-scripts": "^3.4.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^25.2.1",
+    "typescript": "^3.8.3"
+  }
 }
