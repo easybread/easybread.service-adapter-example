@@ -58,7 +58,7 @@
     "@easybread/operations": "^0.0.3",
     "@easybread/schemas": "^0.0.3",
     "axios": "^0.19.2",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.19"
   },
   "devDependencies": {
     "@easybread/test-utils": "^0.0.3",
